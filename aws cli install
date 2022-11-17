@@ -1,0 +1,51 @@
+
+==AWS CLI 本地环境安装
+https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/getting-started-install.html
+
+cd /home/yourname
+
+mkdir tools
+cd /home/yourname/tools
+
+--downalod package
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+
+--create choices.xml
+
+vi choices.xml
+
+replace /Users/yourusername to your path
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <array>
+    <dict>
+      <key>choiceAttribute</key>
+      <string>customLocation</string>
+      <key>attributeSetting</key>
+      <string>/Users/yourusername</string>
+      <key>choiceIdentifier</key>
+      <string>default</string>
+    </dict>
+  </array>
+</plist>
+
+
+
+--install
+installer -pkg AWSCLIV2.pkg \
+            -target CurrentUserHomeDirectory \
+            -applyChoiceChangesXML choices.xml
+
+
+
+
+--run the command
+sudo ln -s /User/yourusername/aws-cli/aws /usr/local/bin/aws
+sudo ln -s /User/yourusername/aws-cli/aws_completer /usr/local/bin/aws_completer
+
+
+--test install asw  successfully
+aws --version
+
